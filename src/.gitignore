@@ -27,3 +27,6 @@ storage/framework/views/*
 storage/app/public/*
 bootstrap/cache/*
 docker/mysql/data/*.ibd
+docker/mysql/data/*.log
+docker/mysql/data/*.dblwr
+docker/mysql/data/#ib_16384_*
