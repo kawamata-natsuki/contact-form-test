@@ -26,3 +26,4 @@ storage/framework/sessions/*
 storage/framework/views/*
 storage/app/public/*
 bootstrap/cache/*
+docker/mysql/data/*.ibd
