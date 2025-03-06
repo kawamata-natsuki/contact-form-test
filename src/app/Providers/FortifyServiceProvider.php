@@ -30,12 +30,12 @@ class FortifyServiceProvider extends ServiceProvider
 
         # 登録ページのビュー指定
         Fortify::registerView(function () {
-            return view('register');
+            return view('auth.register');
         });
 
         # ログインページのビュー指定
         Fortify::loginView(function () {
-            return view('login');
+            return view('auth.login');
         });
 
         # ログイン回数の制限を設定
