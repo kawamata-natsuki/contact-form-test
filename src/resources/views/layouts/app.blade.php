@@ -18,22 +18,22 @@
       <div class="header__logo">
         <h1>FashionablyLate</h1>
       </div>
+      <div>
+        <ul class="header-nav">
+          <li class="header-nav__item">
+            @yield('link')
+          </li>
+          <li class="header-nav__item">
+            @if (Auth::check())
+            <form class="header-nav__item--logout" action="/logout" method="post">
+              @csrf
+              <button>logout</button>
+            </form>
+            @endif
+          </li>
+        </ul>
+      </div>
 
-      <!-- -- 管理画面にはlogout　登録ページにはregister　ログインページにはlogin のリンクが出るようにする @auth @else 
-      <ul class="header-nav">
-        <li class="header-nav__item">
-          <a.header-nav__link href="">ページ遷移のリンク</a>
-        </li>
-        <li class="header-nav__item">
-          @if (Auth::check())
-          <form action="/logout" method="post">
-            @csrf
-            <button>logout</button>
-          </form>
-          @endif
-        </li>
-      </ul>
-      -->
     </div>
   </header>
 

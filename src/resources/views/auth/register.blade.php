@@ -1,37 +1,29 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+@section('css')
+<link rel="stylesheet" href="{{ asset('register.css') }}">
+@endsection
 
-<body>
+@section('link')
+<a class="header-nav__item--login" href="/login">login</a>
+@endsection
 
-  <header>
-    <a href="/login">login</a>
-  </header>
+@section('content')
 
-  <h1>register.blade.php</h1>
-  <h2>登録ページ</h2>
+<h2>Register</h2>
 
-  <form action="/register" method="post">
-    @csrf
-    <p>お名前</p>
-    <input type="text" name="name" value="{{ old('name') }}">
-    <p>メールアドレス</p>
-    <input type="email" name="email" value="{{ old('email') }}">
-    <p>パスワード</p>
-    <input type="password" name="password" value="{{ old('password') }}">
-    @if ($errors->has('password'))
-    <p style="color:red;">{{ $errors->first('password') }}</p>
-    @endif
+<form action="/register" method="post">
+  @csrf
+  <p>お名前</p>
+  <input type="text" name="name" value="{{ old('name') }}">
+  <p>メールアドレス</p>
+  <input type="email" name="email" value="{{ old('email') }}">
+  <p>パスワード</p>
+  <input type="password" name="password">
+  @if ($errors->has('password'))
+  <p style="color:red;">{{ $errors->first('password') }}</p>
+  @endif
 
-    <button type="submit">登録</button>
-  </form>
-
-
-</body>
-
-</html>
+  <button type="submit">登録</button>
+</form>
+@endsection
