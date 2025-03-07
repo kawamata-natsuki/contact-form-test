@@ -12,6 +12,8 @@
 
 <h2>Register</h2>
 
+<!-- バリデーションの設定 -->
+
 <form action="/register" method="post">
   @csrf
   <p>お名前</p>
@@ -20,9 +22,6 @@
   <input type="email" name="email" value="{{ old('email') }}">
   <p>パスワード</p>
   <input type="password" name="password">
-  @if ($errors->has('password'))
-  <p style="color:red;">{{ $errors->first('password') }}</p>
-  @endif
 
   <button type="submit">登録</button>
 </form>
