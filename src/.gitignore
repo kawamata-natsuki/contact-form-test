@@ -30,3 +30,4 @@ docker/mysql/data/*.ibd
 docker/mysql/data/*.log
 docker/mysql/data/*.dblwr
 docker/mysql/data/#ib_16384_*
+temp_*.ibt
