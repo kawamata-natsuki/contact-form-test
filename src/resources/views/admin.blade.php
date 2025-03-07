@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+@section('css')
+<link rel="stylesheet" href="{{ asset('admin.css') }}">
+@endsection
 
-<body>
+@section('link')
+<form class="header-nav__item--logout" action="/logout" method="post">
+  @csrf
+  <button>logout</button>
+</form>
+@endsection
 
-  <header>
-    <ul>
-      @if (Auth::check())
-      <form action="/logout" method="post">
-        @csrf
-        <button>logout</button>
-      </form>
-      @endif
-    </ul>
-  </header>
-
-  <h1>admin.blade.php</h1>
-  <h2>管理画面</h2>
+@section('content')
+<h2>Admin</h2>
 
 
-</body>
-
-</html>
+@endsection
