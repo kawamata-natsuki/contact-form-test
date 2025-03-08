@@ -4,24 +4,20 @@ use App\Http\Controllers\ContactController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-# お問い合わせフォーム確認画面の表示（入力内容の送信）
-Route::post('/confirm', [ContactController::class, 'confirm']);
-
 # お問い合わせフォーム入力画面の表示
-Route::get('/', [ContactController::class, 'index']);
+Route::get('/', [ContactController::class, 'create'])->name('contact.create');
 
+# お問い合わせフォーム確認画面の表示
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
 
-# お問い合わせフォームで入力したデータの保存・サンクスページへリダイレクト
-Route::post('/contact', [ContactController::class, 'store']);
+// 確認画面をGET表示
+Route::get('/confirm', [ContactController::class, 'showConfirm'])->name('contact.showConfirm');
 
-# お問い合わせフォーム確認画面で修正ボタンを押した際にお問い合わせフォーム入力画面に戻る
-Route::post('/', [ContactController::class, 'index']);
+# お問い合わせフォームで入力したデータの保存・
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 # サンクスページの表示
-Route::get('/thanks', [ContactController::class, 'thanks']);
+Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
 # 管理画面の表示
 Route::middleware(['auth'])->group(function () {
