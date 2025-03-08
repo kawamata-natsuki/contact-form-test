@@ -7,7 +7,7 @@
   -->
 @section('content')
 
-<div class="confirm-container">
+<div class="confirm__container">
 
   <div class="confirm__heading">
     <h2>Confirm</h2>

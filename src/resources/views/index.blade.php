@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="contact-container">
+<div class="contact__container">
 
   <div class="contact-form__heading">
     <h2>Contact</h2>
@@ -14,12 +14,12 @@
   <div class="contact-form">
     <form action="{{ route('contact.confirm') }}" method="post">
       @csrf
-      <div class="contact-form__group">
+      <div class="contact-form__fields">
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__name" for="last_name">お名前<span>※</span></label>
           <div class="contact-form__name-inputs">
-            <input class="contact-form__name--input" type="text" name="last_name" id="last_name" placeholder="例：山田"
+            <input class="contact-form__name-input" type="text" name="last_name" id="last_name" placeholder="例：山田"
               value="{{ old('last_name', session('contact.last_name')) }}">
             <input class="contact-form__name-input" type="text" name="first_name" id="first_name" placeholder="例：太郎"
               value="{{ old('first_name', session('contact.first_name')) }}">
@@ -33,7 +33,7 @@
         </div>
 
         <!-- 初期値が男性になっているけど、CSSのUIトリックで見せかけのようにできないか確認 -->
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__gender">性別<span>※</span></label>
           <div class="contact-form__gender-inputs">
             <label for="male">男性</label>
@@ -51,7 +51,7 @@
           @enderror
         </div>
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__email" for="email">メールアドレス<span>※</span></label>
           <input class="contact-form__email-input" type="email" name="email" id="email" placeholder="例：text@example.com"
             value="{{ old('email', session('contact.email')) }}">
@@ -60,7 +60,7 @@
           @enderror
         </div>
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__tel" for="area_code">電話番号<span>※</span></label>
           <div class="contact-form__tel-inputs">
             <input class="contact-form__tel-input" type="text" name="area_code" id="area_code" placeholder="080"
@@ -80,7 +80,7 @@
           @endif
         </div>
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__address" for="address">住所<span>※</span></label>
           <input class="contact-form__address-input" type="text" name="address" id="address"
             placeholder="例：東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address', session('contact.address')) }}">
@@ -90,7 +90,7 @@
 
         </div>
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__building" for="building">建物</label>
           <input class="contact-form__building-input" type="text" name="building" id="building"
             placeholder="例：千駄ヶ谷マンション101" value="{{ old('building', session('contact.building')) }}">
@@ -100,7 +100,7 @@
 
         </div>
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__content" for="content">お問い合わせの種類<span>※</span></label>
           <select class="contact-form__content-select" name="content" id="content">
             <option value="" disabled {{ old('content', session('contact.content')) ? '' : 'selected' }}>
@@ -129,7 +129,7 @@
         </div>
         <!-- 選択してくださいの文字色をplaceholderと同じ薄い色にCSSで変更する -->
 
-        <div class="contact-form__item">
+        <div class="contact-form__field">
           <label class="contact-form__detail" for="detail">お問い合わせ内容<span>※</span></label>
           <textarea class="contact-form__detail-textarea" name="detail" id="detail"
             placeholder="お問い合わせ内容をご記載ください">{{ old('detail', session('contact.detail')) }}</textarea>

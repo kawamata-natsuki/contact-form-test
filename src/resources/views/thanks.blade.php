@@ -16,7 +16,7 @@
 
   <main>
 
-    <div class="thanks-container">
+    <div class="thanks__container">
       <div class="thanks__message">
         <h2>お問い合わせありがとうございました</h2>
       </div>
