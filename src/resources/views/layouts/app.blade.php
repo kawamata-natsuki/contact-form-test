@@ -18,21 +18,13 @@
       <div class="header__logo">
         <h1>FashionablyLate</h1>
       </div>
-      <div>
-        <ul class="header-nav">
-          <li class="header-nav__item">
-            @yield('link')
-          </li>
-          <li class="header-nav__item">
-            @if (Auth::check())
-            <form class="header-nav__item--logout" action="/logout" method="post">
-              @csrf
-              <button>logout</button>
-            </form>
-            @endif
-          </li>
-        </ul>
+      <div class="header-nav">
+        <div class="header-nav__item">
+          @yield('link')
+        </div>
       </div>
+
+    </div>
 
     </div>
   </header>

@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Route;
 
 
 
-# お問い合わせフォーム入力画面の表示
-Route::get('/', [ContactController::class, 'index']);
 
 # お問い合わせフォーム確認画面の表示（入力内容の送信）
 Route::post('/confirm', [ContactController::class, 'confirm']);
+
+# お問い合わせフォーム入力画面の表示
+Route::get('/', [ContactController::class, 'index']);
+
 
 # お問い合わせフォームで入力したデータの保存・サンクスページへリダイレクト
 Route::post('/contact', [ContactController::class, 'store']);
