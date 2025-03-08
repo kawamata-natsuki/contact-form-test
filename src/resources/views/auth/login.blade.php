@@ -10,21 +10,39 @@
 
 
 @section('content')
-
-<h2>Login</h2>
-
 <!-- 登録済のユーザーだけがログインできるようにする -->
-<!-- バリデーションの設定 -->
+<div class="login__container">
+  <div class="login-form__heading">
+    <h2>Login</h2>
+  </div>
 
-<form action="/login" method="post">
-  @csrf
-  <p>メールアドレス</p>
-  <input type="email" name="email" value="{{ old('email') }}">
-  <p>パスワード</p>
-  <input type="password" name="password">
+  <div class="login-form">
+    <form action="/login" method="post">
+      @csrf
+      <div class="login-form__fields">
+        <div class="login-form__field">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="{{ old('email') }}">
+          @error('email')
+          <p class="login-form__error">{{ $message }}</p>
+          @enderror
+        </div>
 
-  <button type="submit">ログイン</button>
-</form>
+        <div class="login-form__field">
+          <p>パスワード</p>
+          <input type="password" name="password">
+          @error('password')
+          <p class="login-form__error">{{ $message }}</p>
+          @enderror
+        </div>
 
+      </div>
+      <div class="login-form__button">
+        <button type="submit">ログイン</button>
+      </div>
+    </form>
+
+  </div>
+</div>
 
 @endsection

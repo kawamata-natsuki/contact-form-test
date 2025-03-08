@@ -8,18 +8,18 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Controllers\Auth\LoginController;
 use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
-use Illuminate\support\Fagades\Auth;
+use Illuminate\support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
-
-
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -33,23 +33,11 @@ class FortifyServiceProvider extends ServiceProvider
         # ユーザー登録処理
         Fortify::createUsersUsing(CreateNewUser::class);
 
-        # ログインページのビュー指定
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
+        # Fortify のログインビューを無効化（ルートを自作するため）
+        Fortify::loginView(fn() => abort(404));
 
         # ログインのバリデーション適用
-        Fortify::authenticateUsing(function (Request $request) {
-            $loginRequest = app(LoginRequest::class);
-            $validated = $loginRequest->validate($request->all());
-
-            $user = User::where('email', $validated['email'])->first();
-
-            if ($user && Hash::check($validated['password'], $user->password)) {
-                return $user;
-            }
-            return null;
-        });
+        $this->app->singleton(\Laravel\Fortify\Contracts\LoginResponse::class, LoginController::class);
 
         # ログイン回数の制限を設定
         RateLimiter::for('login', function (Request $request) {

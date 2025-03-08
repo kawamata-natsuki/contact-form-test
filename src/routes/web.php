@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +24,12 @@ Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thank
 Route::middleware(['auth'])->group(function () {
   Route::get('/admin', function () {
     return view('admin');
-  });
+  })->name('admin');
 });
+
+# ログイン画面のバリデーション実装
+Route::get('login', function () {
+  return view('auth.login');
+})->name('login');
+
+Route::post('/login', [LoginController::class, 'login'])->name('login.process');
