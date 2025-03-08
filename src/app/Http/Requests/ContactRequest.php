@@ -17,7 +17,7 @@ class ContactRequest extends FormRequest
             'last_name' => 'required|string',
             'first_name' => 'required|string',
             'gender' => 'required|in:1,2,3',
-            'email' => 'required|string',
+            'email' => 'required|email|,max:255',
             'area_code' => 'nullable|digits_between:1,5|numeric',
             'prefix' => 'nullable|digits_between:1,5|numeric',
             'suffix' => 'nullable|digits_between:1,5|numeric',
