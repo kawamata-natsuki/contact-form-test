@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
-<!-- デバック -->
-<?php print_r($contact) ?>
-
+<!--
 @section('css')
 <link rel="stylesheet" href="{{ asset('confirm.css') }}">
 @endsection
-
-<!-- バリデーションの設定 -->
+  -->
 @section('content')
 
 <div class="confirm-container">
@@ -18,7 +15,8 @@
 
   <div class="confirm">
 
-    <form action="/contact" method="post">
+
+    <form action="{{ route('contact.store') }}" method="post">
       @csrf
       <div class="confirm__table">
         <table>
@@ -76,8 +74,8 @@
             <tr class="confirm__table-row">
               <th class="confirm__table-header">お問い合わせの種類</th>
               <td class="confirm__table-text">
-                {{ $contact['content'] }}
-                <input type="hidden" name="content" value="{{ $contact['content'] }}">
+                {{ $contact['category_id'] }}
+                <input type="hidden" name="category_id" value="{{ $contact['category_id'] }}">
               </td>
             </tr>
 
@@ -98,22 +96,7 @@
       </div>
     </form>
 
-    <form action="/" method="post">
-      @csrf
-      <input type="hidden" name="last_name" value="{{ $contact['last_name'] }}">
-      <input type="hidden" name="first_name" value="{{ $contact['first_name'] }}">
-      <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
-      <input type="hidden" name="email" value="{{ $contact['email'] }}">
-      <input type="hidden" name="tel" value="{{ $contact['tel'] }}">
-      <!-- フォーム入力画面で復元する用 -->
-      <input type="hidden" name="area_code" value="{{ substr($contact['tel'], 0, 3) }}">
-      <input type="hidden" name="prefix" value="{{ substr($contact['tel'], 3, 4) }}">
-      <input type="hidden" name="suffix" value="{{ substr($contact['tel'], 7, 4) }}">
-      <input type="hidden" name="address" value="{{ $contact['address'] }}">
-      <input type="hidden" name="building" value="{{ $contact['building'] }}">
-      <input type="hidden" name="content" value="{{ $contact['content'] }}">
-      <input type="hidden" name="detail" value="{{ $contact['detail'] }}">
-
+    <form action="{{ route('contact.create') }}" method="get">
       <div class="confirm__buttons">
         <button class="confirm__button--modify" type="submit">修正</button>
       </div>
