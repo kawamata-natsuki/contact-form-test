@@ -21,7 +21,7 @@
   <p>メールアドレス</p>
   <input type="email" name="email" value="{{ old('email') }}">
   <p>パスワード</p>
-  <input type="text" name="password">
+  <input type="password" name="password">
 
   <button type="submit">ログイン</button>
 </form>

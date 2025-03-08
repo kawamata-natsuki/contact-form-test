@@ -11,7 +11,7 @@ class Contact extends Model
 
     # マスアサイメントの設定
     protected $fillable = [
-        'category-id',
+        'category_id',
         'first_name',
         'last_name',
         'gender',
