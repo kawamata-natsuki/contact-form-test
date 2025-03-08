@@ -10,19 +10,47 @@
 
 @section('content')
 
-<h2>Register</h2>
+<div class="register__container">
+  <div class="register__heading">
+    <h2>Register</h2>
+  </div>
 
-<!-- バリデーションの設定 -->
+  <div class="register-form">
+    <form action="/register" method="post">
+      @csrf
+      <div class="register-form__fields">
 
-<form action="/register" method="post">
-  @csrf
-  <p>お名前</p>
-  <input type="text" name="name" value="{{ old('name') }}">
-  <p>メールアドレス</p>
-  <input type="email" name="email" value="{{ old('email') }}">
-  <p>パスワード</p>
-  <input type="password" name="password">
+        <div class="register-form__field">
+          <p>お名前</p>
+          <input type="text" name="name" value="{{ old('name') }}">
+          @error('name')
+          <p class="register-form__error">{{ $message }}</p>
+          @enderror
+        </div>
 
-  <button type="submit">登録</button>
-</form>
+        <div class="register-form__field">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="{{ old('email') }}">
+          @error('email')
+          <p class="register-form__error">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class="register-form__field">
+          <p>パスワード</p>
+          <input type="password" name="password">
+          @error('password')
+          <p class="register-form__error">{{ $message }}</p>
+          @enderror
+        </div>
+      </div>
+
+      <div class="register-form__button">
+        <button type="submit">登録</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
 @endsection
