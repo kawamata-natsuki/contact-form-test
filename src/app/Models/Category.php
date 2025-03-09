@@ -11,4 +11,10 @@ class Category extends Model
 
     # マスアサイメントの設定
     protected $fillable = ['content'];
+
+    # リレーションの定義
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class, 'category_id', 'id');
+    }
 }

@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -49,3 +50,16 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('l
 
 # ログアウト処理
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+/* --------------------------------------------------------------
+ここからadminの設定
+---------------------------------------------------------------*/
+
+# 管理画面の表示
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+# お問い合わせのデータ削除（モーダルウィンドウ内の処理）
+Route::delete('/admin/contact/{id}', [AdminController::class, 'destroy'])->name('admin.contact.destroy');
+
+# エクスポート機能
+Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
