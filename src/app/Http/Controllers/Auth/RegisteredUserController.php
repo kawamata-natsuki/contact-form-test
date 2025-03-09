@@ -12,21 +12,17 @@ use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Contracts\RegisterViewResponse;
 use Laravel\Fortify\Fortify;
 
+// 新規登録の処理 //
 class RegisteredUserController extends Controller
 {
 
-  protected $guard;
-
-  public function __construct(StatefulGuard $guard)
-  {
-    $this->guard = $guard;
-  }
-
+  # 登録画面（/register）を表示
   public function create(Request $request): RegisterViewResponse
   {
     return app(RegisterViewResponse::class);
   }
 
+  # 新規ユーザーの登録処理（リクエストの処理）
   public function store(
     Request $request,
     CreatesNewUsers $creator
@@ -37,10 +33,10 @@ class RegisteredUserController extends Controller
       ]);
     }
 
+    # 新規ユーザー作成
     event(new Registered($user = $creator->create($request->all())));
 
-    $this->guard->login($user);
-
+    # 新規登録後のリダイレクト
     return app(RegisterResponse::class);
   }
 }

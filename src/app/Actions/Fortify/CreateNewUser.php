@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 
-// Fortify 新規ユーザー登録の処理 //
+# Fortify 新規ユーザー登録の処理（バリデーションチェック・DB保存・パスワードのハッシュ化）
 
 class CreateNewUser implements CreatesNewUsers
 {
