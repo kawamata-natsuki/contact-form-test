@@ -22,7 +22,7 @@ class AuthenticatedSessionController extends Controller
     # 認証処理
     if (!Auth::attempt($credentials, $request->boolean('remember'))) {
       throw ValidationException::withMessages([
-        'email' => _('auth.failed'),
+        'email' => __('auth.failed'),
       ]);
     }
 

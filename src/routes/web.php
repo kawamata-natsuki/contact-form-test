@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\Auth\AuthenticatedUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogioutController;
-use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 
 # お問い合わせフォーム入力画面の表示
@@ -41,23 +39,13 @@ Route::get('/login', function () {
   return view('auth.login');
 })->name('login');
 
+# ログイン後のリダイレクト先（/admin）を表示
+Route::get('/admin', function () {
+  return view('admin');
+})->middleware('auth')->name('admin');
 
+# ログイン処理
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
 
-/*
-# 管理画面の表示
-Route::middleware(['auth'])->group(function () {
-  Route::get('/admin', function () {
-    return view('admin');
-  })->name('admin');
-});
-
-
-# ログイン画面のバリデーション実装
-Route::get('login', function () {
-  return view('auth.login');
-})->name('login');
-
-Route::post('/login', [LoginController::class, 'login'])->name('login.process');
-
-Route::post('/register', [RegisterdUserController::class, 'store']);
-*/
+# ログアウト処理
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
