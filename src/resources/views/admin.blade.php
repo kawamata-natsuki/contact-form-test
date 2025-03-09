@@ -20,15 +20,15 @@
 
   <div class="admin">
 
-    <div class="admin__filters">
-      <form action="" method="get">
+    <div class="admin__serch-form">
+      <form action="/" method="get">
         @csrf
-        <div class="admin__filter-item">
+        <div class="admin__serch-form__item">
           <input type="text" name="query" placeholder="名前やメールアドレスを入力してください">
         </div>
 
         <!-- value 確認　1,2,3 -->
-        <div class="admin__filter-item">
+        <div class="admin__serch-form__item">
           <select name="gender">
             <option value="" disabled selected>性別</option>
             <option value="1">男性</option>
@@ -38,7 +38,7 @@
         </div>
 
         <!-- name確認　content category_id -->
-        <div class="admin__filter-item">
+        <div class="admin__serch-form__item">
           <select name="category_id">
             <option value="" disabled selected>お問い合わせの種類</option>
             <option value="1">商品のお届けについて</option>
@@ -49,16 +49,15 @@
           </select>
         </div>
 
-        <div class="admin__filter-item">
+        <div class="admin__serch-form__item">
           <input type="date">
         </div>
 
-        <div class="admin__filter-item">
+        <div class="admin__serch-form__item">
           <button type="submit">検索</button>
         </div>
 
-        <!-- リセットボタン -->
-        <div class="admin__filter-item">
+        <div class="admin__serch-form__item">
           <button type="reset">リセット</button>
         </div>
 
