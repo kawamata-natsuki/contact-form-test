@@ -20,21 +20,48 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class FortifyServiceProvider extends ServiceProvider
 {
     public function boot(): void
+
     {
+        # Fortigyが提供するデフォルトのルートを無効化(ルート自作)
+        Fortify::ignoreRoutes();
+
+        # CreatesNewUsers をバインド
+        $this->app->singleton(CreatesNewUsers::class, CreateNewUser::class);
+
         # ユーザー登録ページのビュー指定
         Fortify::registerView(function () {
             return view('auth.register');
         });
 
+        # ログインページのビュー指定
+        Fortify::loginView(function () {
+            return view('auth.login');
+        });
+
+
+
+
+
+        /*
+        // 登録後にログイン画面へリダイレクト
+        Fortify::registerResponse(function ($request, $user) {
+            return redirect('/login');
+        });
+
+        /*
+
         # ユーザー登録処理
         Fortify::createUsersUsing(CreateNewUser::class);
 
-        # Fortify のログインビューを無効化（ルートを自作するため）
-        Fortify::loginView(fn() => abort(404));
+        #新規登録後のリダイレクトを/loginに変更
+        Fortify::redirects('register', '/login');
+        Fortify::redirects('login', '/admin');
+
 
         # ログインのバリデーション適用
         $this->app->singleton(\Laravel\Fortify\Contracts\LoginResponse::class, LoginController::class);
@@ -49,5 +76,6 @@ class FortifyServiceProvider extends ServiceProvider
         Route::post('/logout', function () {
             return redirect('/login');
         });
+        */
     }
 }
