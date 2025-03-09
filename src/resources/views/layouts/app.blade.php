@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせフォーム</title>
-  <!--  
+
   <link rel="stylesheet" href="{{ asset('sanitize.css')}}">
   <link rel="stylesheet" href="{{ asset('common.css')}}">
   @yield('css')
-  -->
+
 </head>
 
 <body>
