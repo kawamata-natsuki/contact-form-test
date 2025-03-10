@@ -50,7 +50,13 @@ class ContactController extends Controller
         unset($validated['area_code'], $validated['prefix'], $validated['suffix'], $validated['content']);
 
         # セッション保存
-        session(['contact' => $validated]);
+        session([
+            'contact' => $validated,
+            'area_code' => $request->area_code,
+            'prefix' => $request->prefix,
+            'suffix' => $request->suffix,
+            'content' => $request->content,
+        ]);
 
         // GET画面へリダイレクト
         return redirect()->route('contact.showConfirm');

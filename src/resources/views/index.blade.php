@@ -64,13 +64,13 @@
           <label class="contact-form__tel" for="area_code">電話番号<span>※</span></label>
           <div class="contact-form__tel-inputs">
             <input class="contact-form__tel-input" type="text" name="area_code" id="area_code" placeholder="080"
-              value="{{ old('area_code', session('contact.area_code')) }}">
+              value="{{ old('area_code', session('area_code')) }}">
             <span>-</span>
             <input class="contact-form__tel-input" type="text" name="prefix" id="prefix" placeholder="1234"
-              value="{{ old('prefix', session('contact.prefix')) }}">
+              value="{{ old('prefix', session('prefix')) }}">
             <span>-</span>
             <input class="contact-form__tel-input" type="text" name="suffix" id="suffix" placeholder="5678"
-              value="{{ old('suffix', session('contact.suffix')) }}">
+              value="{{ old('suffix', session('suffix')) }}">
           </div>
           @if ($errors->has('tel'))
           <p class="contact-form__error">{{ $errors->first('tel') }}</p>
@@ -103,23 +103,22 @@
         <div class="contact-form__field">
           <label class="contact-form__content" for="content">お問い合わせの種類<span>※</span></label>
           <select class="contact-form__content-select" name="content" id="content">
-            <option value="" disabled {{ old('content', session('contact.content')) ? '' : 'selected' }}>
+            <option value="" disabled {{ old('content', session('content')) ? '' : 'selected' }}>
               選択してください
             </option>
-            <option value="商品のお届けについて" {{ old('content', session('contact.content'))=='商品のお届けについて' ? 'selected' : '' }}>
+            <option value="商品のお届けについて" {{ old('content', session('content'))=='商品のお届けについて' ? 'selected' : '' }}>
               商品のお届けについて
             </option>
-            <option value="商品の交換について" {{ old('content', session('contact.content'))=='商品の交換について' ? 'selected' : '' }}>
+            <option value="商品の交換について" {{ old('content', session('content'))=='商品の交換について' ? 'selected' : '' }}>
               商品の交換について
             </option>
-            <option value="商品トラブル" {{ old('content', session('contact.content'))=='商品トラブル' ? 'selected' : '' }}>
+            <option value="商品トラブル" {{ old('content', session('content'))=='商品トラブル' ? 'selected' : '' }}>
               商品トラブル
             </option>
-            <option value="ショップへのお問い合わせ" {{ old('content', session('contact.content'))=='ショップへのお問い合わせ' ? 'selected' : ''
-              }}>
+            <option value="ショップへのお問い合わせ" {{ old('content', session('content'))=='ショップへのお問い合わせ' ? 'selected' : '' }}>
               ショップへのお問い合わせ
             </option>
-            <option value="その他" {{ old('content', session('contact.content'))=='その他' ? 'selected' : '' }}>
+            <option value="その他" {{ old('content', session('content'))=='その他' ? 'selected' : '' }}>
               その他
             </option>
           </select>
