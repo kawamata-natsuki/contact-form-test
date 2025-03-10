@@ -23,11 +23,7 @@
       <div class="header__logo">
         <h1 class="header__logo-title">FashionablyLate</h1>
       </div>
-      <div class="header-nav">
-        <div class="header-nav__item">
-          @yield('link')
-        </div>
-      </div>
+      @yield('link')
     </div>
   </header>
 

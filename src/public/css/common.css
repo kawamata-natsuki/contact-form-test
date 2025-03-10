@@ -35,17 +35,6 @@ header {
   color: #8B7969;
 }
 
-.header__nav {
-  display: flex;
-  margin-left: auto;
-}
-
-.header-nav__item {
-  width: 100px;
-  height: 34px;
-  right: 196px;
-  border: 1px solid #D9C6B5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+main {
+  background-color: #F1ECE7;
 }
