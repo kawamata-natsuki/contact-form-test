@@ -11,6 +11,7 @@ class Contact extends Model
 {
     use HasFactory;
 
+    # 論理削除機能
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
