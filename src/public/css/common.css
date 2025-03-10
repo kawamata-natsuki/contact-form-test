@@ -17,13 +17,13 @@ header {
   width: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 100px;
 }
 
 .header__logo {
-  flex-grow: 1;
+  width: 100%;
   text-align: center;
 }
 
@@ -35,10 +35,15 @@ header {
   color: #8B7969;
 }
 
+.header__nav {
+  display: flex;
+  margin-left: auto;
+}
+
 .header-nav__item {
   width: 100px;
   height: 34px;
-  margin-right: 196px;
+  right: 196px;
   border: 1px solid #D9C6B5;
   display: flex;
   justify-content: center;
