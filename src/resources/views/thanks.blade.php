@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせフォーム</title>
-  <!--  
-  <link rel="stylesheet" href="{{ asset('sanitize.css')}}">
-  <link rel="stylesheet" href="{{ asset('common.css')}}">
-  <link rel="stylesheet" href="{{ asset('thanks.css') }}">
-  -->
+
+  <!-- フォントの読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Inika&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/sanitize.css')}}">
+  <link rel="stylesheet" href="{{ asset('css/thanks.css') }}">
+
 </head>
 
 <body>
-
   <main>
 
     <div class="thanks__container">
       <div class="thanks__message">
-        <h2>お問い合わせありがとうございました</h2>
+        <p>お問い合わせありがとうございました</p>
       </div>
       <div class="home__button">
         <form action="{{ route('contact.create') }}" method="get">
@@ -28,7 +28,6 @@
     </div>
 
   </main>
-
 </body>
 
 </html>
