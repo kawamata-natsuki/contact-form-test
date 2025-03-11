@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 # お問い合わせフォーム入力画面の表示
@@ -36,10 +37,13 @@ Route::get('register', function () {
 # ユーザー登録処理
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
-# ログイン画面の表示
-Route::get('/login', function () {
-  return view('auth.login');
-})->name('login');
+# ログイン画面の表示（ゲストのみ）
+Route::middleware('guest')->group(function () {
+  Route::get('/login', function () {
+    return view('auth.login');
+  })->name('login');
+});
+
 
 # ログイン後のリダイレクト先（/admin）を表示
 Route::get('/admin', function () {
@@ -48,6 +52,9 @@ Route::get('/admin', function () {
 
 # ログイン処理
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.store');
+
+# ログイン画面バリデーションエラーメッセージ表示
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
 # ログアウト処理
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use Illuminate\Validation\ValidationException;
 class AuthenticatedSessionController extends Controller
 {
   // ログイン処理
-  public function store(Request $request)
+  public function store(LoginRequest $request)
   {
     # バリデーションチェック
     $credentials = $request->validate([

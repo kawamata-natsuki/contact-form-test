@@ -14,8 +14,6 @@ class RegisterController extends Controller
   public function register(RegisterRequest $request)
   {
 
-    dd($request->all()); // ✅ バリデーション前のデータを確認
-
     $validatedData = $request->validated();
 
     User::create([
