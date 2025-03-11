@@ -1,108 +1,146 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
 @section('content')
 <div class="contact__container">
 
-  <div class="contact-form__heading">
-    <h2>Contact</h2>
+  <div class="contact__heading">
+    <h2 class="contact__heading-title">Contact</h2>
   </div>
 
   <div class="contact-form">
-    <form action="{{ route('contact.confirm') }}" method="post">
+    <form class="contact-form__content" action="{{ route('contact.confirm') }}" method="post">
       @csrf
       <div class="contact-form__fields">
 
         <div class="contact-form__field">
-          <label class="contact-form__name" for="last_name">お名前<span>※</span></label>
-          <div class="contact-form__name-inputs">
-            <input class="contact-form__name-input" type="text" name="last_name" id="last_name" placeholder="例：山田"
-              value="{{ old('last_name', session('contact.last_name')) }}">
-            <input class="contact-form__name-input" type="text" name="first_name" id="first_name" placeholder="例：太郎"
-              value="{{ old('first_name', session('contact.first_name')) }}">
+          <label class="contact-form__label" for="last_name">お名前<span>※</span></label>
+          <div class="contact-form__input">
+            <div class="contact-form__input-group--name">
+              <input class="contact-form__input--name" type="text" name="last_name" id="last_name" placeholder="例：山田"
+                value="{{ old('last_name', session('contact.last_name')) }}">
+              @error('last_name')
+              <ul class="contact-form__error">
+                @foreach ($errors->get('last_name') as $message)
+                <li>{{ $message }}</li>
+                @endforeach
+              </ul>
+              @enderror
+
+              <input class="contact-form__input--name" type="text" name="first_name" id="first_name" placeholder="例：太郎"
+                value="{{ old('first_name', session('contact.first_name')) }}">
+              @error('first_name')
+              <ul class="contact-form__error">
+                @foreach ($errors->get('first_name') as $message)
+                <li>{{ $message }}</li>
+                @endforeach
+              </ul>
+              @enderror
+            </div>
           </div>
-          @error('last_name')
-          <p class="contact-form__error">{{ $message }}</p>
-          @enderror
-          @error('first_name')
-          <p class="contact-form__error">{{ $message }}</p>
-          @enderror
         </div>
 
-        <!-- 初期値が男性になっているけど、CSSのUIトリックで見せかけのようにできないか確認 -->
+
         <div class="contact-form__field">
-          <label class="contact-form__gender">性別<span>※</span></label>
-          <div class="contact-form__gender-inputs">
-            <label for="male">男性</label>
-            <input class="contact-form__gender-radio" type="radio" id="male" name="gender" value="1" {{(old('gender',
-              session('contact.gender', 1))==1) ? 'checked' : '' }}>
-            <label for="female">女性</label>
-            <input class="contact-form__gender-radio" type="radio" id="female" name="gender" value="2" {{(old('gender',
-              session('contact.gender'))==2) ? 'checked' : '' }}>
-            <label for="other">その他</label>
-            <input class="contact-form__gender-radio" type="radio" id="other" name="gender" value="3" {{ (old('gender',
-              session('contact.gender'))==3) ? 'checked' : '' }}>
+          <label class="contact-form__label">性別<span>※</span></label>
+          <div class="contact-form__radio-group">
+            <div class="contact-form__input">
+              <div class="contact-form__input">
+                <input class="contact-form__radio" type="radio" id="male" name="gender" value="1"
+                  {{(old('gender',session('contact.gender', 1))==1) ? 'checked' : '' }}>
+                <label class="contact-form__radio--item" for="male">男性</label>
+              </div>
+            </div>
+            <div class="contact-form__input">
+              <input class="contact-form__radio" type="radio" id="female" name="gender" value="2"
+                {{(old('gender',session('contact.gender'))==2) ? 'checked' : '' }}>
+              <label class="contact-form__radio--item" for="female">女性</label>
+            </div>
+            <div class="contact-form__input">
+              <input class="contact-form__radio" type="radio" id="other" name="gender" value="3" {{
+                (old('gender',session('contact.gender'))==3) ? 'checked' : '' }}>
+              <label class="contact-form__radio--item" for="other">その他</label>
+            </div>
           </div>
           @error('gender')
-          <p class="contact-form__error">{{ $message }}</p>
+          <ul class="contact-form__error">
+            @foreach ($errors->get('gender') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+          </ul>
           @enderror
         </div>
 
         <div class="contact-form__field">
-          <label class="contact-form__email" for="email">メールアドレス<span>※</span></label>
-          <input class="contact-form__email-input" type="email" name="email" id="email" placeholder="例：text@example.com"
-            value="{{ old('email', session('contact.email')) }}">
-          @error('email')
-          <p class="contact-form__error">{{ $message }}</p>
-          @enderror
-        </div>
-
-        <div class="contact-form__field">
-          <label class="contact-form__tel" for="area_code">電話番号<span>※</span></label>
-          <div class="contact-form__tel-inputs">
-            <input class="contact-form__tel-input" type="text" name="area_code" id="area_code" placeholder="080"
-              value="{{ old('area_code', session('area_code')) }}">
-            <span>-</span>
-            <input class="contact-form__tel-input" type="text" name="prefix" id="prefix" placeholder="1234"
-              value="{{ old('prefix', session('prefix')) }}">
-            <span>-</span>
-            <input class="contact-form__tel-input" type="text" name="suffix" id="suffix" placeholder="5678"
-              value="{{ old('suffix', session('suffix')) }}">
+          <label class="contact-form__label" for="email">メールアドレス<span>※</span></label>
+          <div class="contact-form__input">
+            <input class="contact-form__input--email" type="email" name="email" id="email"
+              placeholder="例：text@example.com" value="{{ old('email', session('contact.email')) }}">
+            @error('email')
+            <ul class="contact-form__error">
+              @foreach ($errors->get('email') as $message)
+              <li>{{ $message }}</li>
+              @endforeach
+            </ul>
+            @enderror
           </div>
-          @if ($errors->has('tel'))
-          <p class="contact-form__error">{{ $errors->first('tel') }}</p>
-          @endif
-          @if ($errors->has('area_code') || $errors->has('prefix') || $errors->has('suffix'))
-          <p class="contact-form__error">電話番号は5桁までの数字で入力してください</p>
-          @endif
         </div>
 
         <div class="contact-form__field">
-          <label class="contact-form__address" for="address">住所<span>※</span></label>
-          <input class="contact-form__address-input" type="text" name="address" id="address"
-            placeholder="例：東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address', session('contact.address')) }}">
+          <label class="contact-form__label" for="area_code">電話番号<span>※</span></label>
+          <div class="contact-form__input-group--tel">
+            <div class="contact-form__input">
+              <input class="contact-form__input--tel" type="text" name="area_code" id="area_code" placeholder="080"
+                value="{{ old('area_code', session('area_code')) }}">
+              <span>-</span>
+              <input class="contact-form__input--tel" type="text" name="prefix" id="prefix" placeholder="1234"
+                value="{{ old('prefix', session('prefix')) }}">
+              <span>-</span>
+              <input class="contact-form__input--tel" type="text" name="suffix" id="suffix" placeholder="5678"
+                value="{{ old('suffix', session('suffix')) }}">
+              @if ($errors->has('tel'))
+              <p class="contact-form__error">{{ $errors->first('tel') }}</p>
+              @endif
+              @if ($errors->has('area_code') || $errors->has('prefix') || $errors->has('suffix'))
+              <p class="contact-form__error">電話番号は5桁までの数字で入力してください</p>
+              @endif
+            </div>
+          </div>
+        </div>
+
+
+        <div class="contact-form__field">
+          <label class="contact-form__label" for="address">住所<span>※</span></label>
+          <input class="contact-form__input" type="text" name="address" id="address" placeholder="例：東京都渋谷区千駄ヶ谷1-2-3"
+            value="{{ old('address', session('contact.address')) }}">
           @error('address')
-          <p class="contact-form__error">{{ $message }}</p>
+          <ul class="contact-form__error">
+            @foreach ($errors->get('address') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+          </ul>
           @enderror
-
         </div>
 
         <div class="contact-form__field">
-          <label class="contact-form__building" for="building">建物</label>
-          <input class="contact-form__building-input" type="text" name="building" id="building"
-            placeholder="例：千駄ヶ谷マンション101" value="{{ old('building', session('contact.building')) }}">
+          <label class="contact-form__label" for="building">建物</label>
+          <input class="contact-form__input" type="text" name="building" id="building" placeholder="例：千駄ヶ谷マンション101"
+            value="{{ old('building', session('contact.building')) }}">
           @error('building')
-          <p class="contact-form__error">{{ $message }}</p>
+          <ul class="contact-form__error">
+            @foreach ($errors->get('address') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+          </ul>
           @enderror
-
         </div>
 
         <div class="contact-form__field">
-          <label class="contact-form__content" for="content">お問い合わせの種類<span>※</span></label>
-          <select class="contact-form__content-select" name="content" id="content">
+          <label class="contact-form__label" for="content">お問い合わせの種類<span>※</span></label>
+          <select class="contact-form__input" name="content" id="content">
             <option value="" disabled {{ old('content', session('content')) ? '' : 'selected' }}>
               選択してください
             </option>
@@ -123,27 +161,34 @@
             </option>
           </select>
           @error('content')
-          <p class="contact-form__error">{{ $message }}</p>
+          <ul class="contact-form__error">
+            @foreach ($errors->get('content') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+          </ul>
           @enderror
         </div>
-        <!-- 選択してくださいの文字色をplaceholderと同じ薄い色にCSSで変更する -->
 
         <div class="contact-form__field">
-          <label class="contact-form__detail" for="detail">お問い合わせ内容<span>※</span></label>
-          <textarea class="contact-form__detail-textarea" name="detail" id="detail"
+          <label class="contact-form__label" for="detail">お問い合わせ内容<span>※</span></label>
+          <textarea class="contact-form__input" name="detail" id="detail"
             placeholder="お問い合わせ内容をご記載ください">{{ old('detail', session('contact.detail')) }}</textarea>
           @error('detail')
-          <p class="contact-form__error">{{ $message }}</p>
+          <ul class="contact-form__error">
+            @foreach ($errors->get('detail') as $message)
+            <li>{{ $message }}</li>
+            @endforeach
+          </ul>
           @enderror
         </div>
       </div>
-
       <div class="contact-form__button">
-        <button type="submit">確認画面</button>
+        <button class="contact-form__button--submit" type="submit">
+          確認画面</button>
       </div>
-    </form>
-
   </div>
-</div>
+  </form>
 
+</div>
+</div>
 @endsection
