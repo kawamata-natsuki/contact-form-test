@@ -28,10 +28,6 @@ class ContactRequest extends FormRequest
         ];
     }
 
-
-
-
-    // メールアドレスのバリデーション　ポップアップみたいな感じになる//
     public function messages()
     {
         return [
@@ -57,7 +53,7 @@ class ContactRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             // いずれかの入力欄が未入力の場合
-            if (!$this->input('area_code') || !$this->input('prefix') || !$this->input('suffix')) {
+            if (!$this->input('area_code') && !$this->input('prefix') && !$this->input('suffix')) {
                 $validator->errors()->add('tel', '電話番号を入力してください');
             }
         });

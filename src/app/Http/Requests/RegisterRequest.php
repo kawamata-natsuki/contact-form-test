@@ -28,8 +28,8 @@ class RegisterRequest extends FormRequest
             'email.email' => 'メールアドレスは「ユーザー名@ドメイン」形式で入力してください',
             'email.unique' => 'このメールアドレスは既に登録されています',
             'password.required' => 'パスワードを入力してください',
-            'password.min' => 'パスワードは8文字以上の半角英数字で入力してください',
-            'password.regex' => 'パスワードは8文字以上の半角英数字で入力してください',
+            'password.min' => 'パスワードは8文字以上で入力してください',
+            'password.regex' => 'パスワードは半角英数字で入力してください',
         ];
     }
 }

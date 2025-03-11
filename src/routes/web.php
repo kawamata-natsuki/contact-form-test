@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,9 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('l
 
 # ログアウト処理
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+
 
 /* --------------------------------------------------------------
 ここからadminの設定
