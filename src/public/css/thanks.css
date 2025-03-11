@@ -52,16 +52,18 @@ main {
   text-align: center;
   background-color: #82756A;
   color: #FFFFFF;
+  cursor: pointer;
 }
 
 .home__button-subimit {
-  width: 100%;
+  width: 140px;
   height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   background-color: #82756A;
   border: none;
-  cursor: pointer;
   color: #FFFFFF;
+  cursor: pointer;
 }
