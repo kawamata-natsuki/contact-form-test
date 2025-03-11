@@ -2,9 +2,9 @@
 
 ## 環境構築
 - Docker ビルド
-  1. git@github.com:kawamata-natsuki/contact-form-test.git 
+  1.  リポジトリをクローン 
+  `git clone　git@github.com:kawamata-natsuki/contact-form-test.git`
   2. `docker-compose up -d --build`
-
   *MYSQLはOSによって起動しない場合があるので、それぞれのPCに合わせて `docker-compose.yml`ファイルを編集してください
 
 - Laravel 環境構築
@@ -15,7 +15,6 @@
   5. `php artisan migrate`
   6. `php artisan db:seed`
   
-
 ## 使用技術(実行環境)
 - Laravel Framework 8.83.29
 - PHP 8.4.3
@@ -28,3 +27,4 @@
 
 ## URL
 - 開発環境：http://localhost/
+- データベース： http://localhost:8080
