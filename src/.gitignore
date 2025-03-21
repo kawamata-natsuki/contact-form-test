@@ -18,6 +18,7 @@ yarn-error.log
 # ここから自分が追加した部分
 # ===========================
 docker/mysql/data/
+docker/mysql/data/#innodb_temp
 docker/nginx/logs/
 docker/php/logs/
 storage/logs/*.log
