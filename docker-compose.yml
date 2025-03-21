@@ -20,7 +20,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: contact-form-db
       MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: L@r@vel_p@ssw0rd!2025
+      MYSQL_PASSWORD: laravel_pass
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
@@ -30,7 +30,7 @@ services:
     environment:
       - PMA_HOST=mysql
       - PMA_USER=laravel_user
-      - PMA_PASSWORD=L@r@vel_p@ssw0rd!2025
+      - PMA_PASSWORD=laravel_pass
     depends_on:
       - mysql
     ports:
