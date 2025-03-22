@@ -12,8 +12,12 @@
   2. `composer install`
   3. `.env.example`ファイルから`.env`を作成する `cp .env.example .env`
   4. `php artisan key:generate`
-  5. `php artisan migrate`
-  6. `php artisan db:seed`
+  5. MYSQLの初期化(初回のみ)
+  - `docker-compose down -v`
+  - `sudo rm -rf ./docker/mysql/data`
+  - `docker-compose up -d`
+  6. `php artisan migrate`
+  7. `php artisan db:seed`
   
 ## 使用技術(実行環境)
 - Laravel Framework 8.83.29
